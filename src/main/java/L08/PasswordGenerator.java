@@ -2,6 +2,34 @@ package L08;
 
 public class PasswordGenerator {
 
+	public static String gen_password_from_first(String sentence) {
+		String out = "";
+		boolean is_start = true;
+		boolean has_number = false;
+		boolean has_special = false;
+		for (int i = 0; i < sentence.length(); i++) {
+			char c = sentence.charAt(i);
+			if (c == ' ') {
+				is_start = true;
+				continue;
+			} else if (is_special_char(c)) {
+				out += c;
+				has_special = true;
+			}
+			if (is_start) {
+				is_start = false;
+				out += c;
+				if ('0' <= c && c <= '9') {
+					has_number = true;
+				}
+			}
+		}
+		if (has_number && has_special && out.length() <= 15 && out.length() >= 8) {
+			return out;
+		}
+		return "Invalid";
+	}
+
 	public static String generatePasswordFromFirst(String sentence) {
 		String cleaned = trim_spaces(sentence);
 		String[] words = split_by_space(cleaned);
@@ -183,42 +211,49 @@ public class PasswordGenerator {
 		String test1 = "Ich gehe morgen mit meinen 11 Freund*innen zum Essen!";
 		System.out.println("Input: " + test1);
 		System.out.println("First: " + generatePasswordFromFirst(test1));
+		System.out.println("First (alternative): " + gen_password_from_first(test1));
 		System.out.println("Last:  " + generatePasswordFromLast(test1));
 		System.out.println();
 
 		String test2 = "Fünf Fakultät oder auch 5! Ergibt 120.";
 		System.out.println("Input: " + test2);
 		System.out.println("First: " + generatePasswordFromFirst(test2));
+		System.out.println("First (alternative): " + gen_password_from_first(test2));
 		System.out.println("Last:  " + generatePasswordFromLast(test2));
 		System.out.println();
 
 		String test3 = "So wird das nichts!";
 		System.out.println("Input: " + test3);
 		System.out.println("First: " + generatePasswordFromFirst(test3));
+		System.out.println("First (alternative): " + gen_password_from_first(test3));
 		System.out.println("Last:  " + generatePasswordFromLast(test3));
 		System.out.println();
 
 		String test4 = "Hurr!a ich habe 90% der Aufgaben richtig gelöst.";
 		System.out.println("Input: " + test4);
 		System.out.println("First: " + generatePasswordFromFirst(test4));
+		System.out.println("First (alternative): " + gen_password_from_first(test4));
 		System.out.println("Last:  " + generatePasswordFromLast(test4));
 		System.out.println();
 
 		String test5 = "Wiederhole 3 mal: Das ! in Java ist der Negierungsoperator der booleschen Algebra.";
 		System.out.println("Input: " + test5);
 		System.out.println("First: " + generatePasswordFromFirst(test5));
+		System.out.println("First (alternative): " + gen_password_from_first(test5));
 		System.out.println("Last:  " + generatePasswordFromLast(test5));
 		System.out.println();
 
 		String test6 = "   Ich gehe morgen mit meinen 11 Freund*innen zum Essen!   ";
 		System.out.println("Input: [" + test6 + "]");
 		System.out.println("First: " + generatePasswordFromFirst(test6));
+		System.out.println("First (alternative): " + gen_password_from_first(test6));
 		System.out.println("Last:  " + generatePasswordFromLast(test6));
 		System.out.println();
 
 		String test7 = "Hurr!a ich    habe 90 % der Aufgaben richtig gelöst.";
 		System.out.println("Input: " + test7);
 		System.out.println("First: " + generatePasswordFromFirst(test7));
+		System.out.println("First (alternative): " + gen_password_from_first(test7));
 		System.out.println("Last:  " + generatePasswordFromLast(test7));
 	}
 }
