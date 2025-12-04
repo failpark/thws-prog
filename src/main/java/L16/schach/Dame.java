@@ -1,4 +1,4 @@
-package L16.U1_schach;
+package L16.schach;
 
 public class Dame extends AbstractFigur implements Laeufer, Turm
 {
@@ -18,8 +18,7 @@ public class Dame extends AbstractFigur implements Laeufer, Turm
     Brett brettLaeufer = laeufer.gibErlaubteFelder();
     Brett brettTurm = turm.gibErlaubteFelder();
 //    Brett kombiniertesBrett = brettTurm.kombiniere(brettLaeufer);
-//    return kombiniertesBrett;
-	  return brettTurm;
+    return brettTurm;
   }
 
   public static void main(String[] args)
