@@ -12,13 +12,13 @@ public class Main {
 		print_hand(hand);
 	}
 
-	public static void print_deck(Deck<? extends Card> deck) {
-
+	public <T extends Comparable<T>> void print_deck(Deck<? extends Card<T>> deck) {
+		print_hand(deck.get_deck());
 	}
 
-	public static void print_hand(List<? extends Card> hand) {
+	public static <T extends Comparable<T>> void print_hand(List<? extends Card<T>> hand) {
 		System.out.println("———————————");
-		for (Card c : hand) {
+		for (Card<T> c : hand) {
 			System.out.println(c);
 		}
 		System.out.println("———————————");
